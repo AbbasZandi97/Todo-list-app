@@ -46,13 +46,18 @@ namespace TodoApp.service
             {
                 repo.SeeAllToDos();
             }
-            else if (input.Equals("A")) {
+            else if (input.Equals("A")) 
+            {
  
                 repo.AddToDo();
             }
-            else // this part gets R
+            else if (input.Equals("R")) 
             {
                 repo.RemoveToDo();
+            }
+            else
+            {
+                return;
             }
 
             

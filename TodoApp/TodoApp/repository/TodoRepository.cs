@@ -21,15 +21,13 @@ namespace TodoApp.repository
                 string task = ConsoleUi.GetTaskToAdd();
                 if (!TodoValidator.IsToDoUnique(task, _toDos))
                 {
-                    Console.WriteLine("Entered task is already in the list.");
-                    Console.WriteLine("Enter a new value: ");
+                    ConsoleUi.PrintTaskIsUnique();
                     continue;
                 }
                 
                 if (TodoValidator.IsToDoEmpty(task))
                 {
-                    Console.WriteLine("You entered nothing or an empty task.");
-                    Console.WriteLine("Enter a valid task again: ");
+                    ConsoleUi.PrintEmptyTask();
                     continue;
                 }
 
@@ -54,9 +52,8 @@ namespace TodoApp.repository
             index--;
             string deletedTask = _toDos[index].Description;
             _toDos.RemoveAt(index);
-            Console.WriteLine("Following task removed: ");
-            Console.WriteLine(deletedTask);
-            Console.WriteLine();
+            ConsoleUi.PrintRemovedTask(deletedTask);
+            
         }           
 
         public void SeeAllToDos()
@@ -83,9 +80,7 @@ namespace TodoApp.repository
 
         public bool IsListEmpty()
         {
-            if (_toDos.Count == 0) return true;  
-            
-            return false;
+            return _toDos.Count == 0;
         }
     }
 }

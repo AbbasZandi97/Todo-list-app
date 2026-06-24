@@ -21,7 +21,23 @@ namespace TodoApp.Ui
             Console.WriteLine("You need to enter a task first.\n");
         }
 
+        public static void PrintRemovedTask(string removedTask)
+        {
+            Console.WriteLine("Following task removed: ");
+            Console.WriteLine(removedTask);
+            Console.WriteLine();
+        }
 
+        public static void PrintTaskIsUnique()
+        {
+            Console.WriteLine("Entered task is already in the list.");
+            Console.WriteLine("Enter a new value: ");
+        }
+        public static void PrintEmptyTask()
+        {
+            Console.WriteLine("You entered nothing or an empty task.");
+            Console.WriteLine("Enter a valid task again: ");
+        }
         public static string GetChoice()
         {
             string input;
@@ -40,6 +56,7 @@ namespace TodoApp.Ui
             {
                 Console.WriteLine("Empty input.");
                 Console.WriteLine("Try again: ");
+                PrintMenu();
                 return false;
             }
 
@@ -57,6 +74,7 @@ namespace TodoApp.Ui
                 default:
                     Console.WriteLine("Invalid Input.");
                     Console.WriteLine("Try again.");
+                    PrintMenu();
                     return false;
             }
 
@@ -102,7 +120,7 @@ namespace TodoApp.Ui
             return true;
         }
 
-
+        
 
     }
 }

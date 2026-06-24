@@ -10,7 +10,6 @@ namespace TodoApp
         {
             TodoService service = new TodoService();
             service.StartProgram();
-
         }
     }
 }

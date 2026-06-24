@@ -19,10 +19,7 @@ namespace TodoApp.validation
 
         public static bool IsToDoEmpty(string toDoToBeChecked)
         {
-            if (string.IsNullOrWhiteSpace(toDoToBeChecked))
-                return true;
-            else
-                return false;
+            return string.IsNullOrWhiteSpace(toDoToBeChecked);
         }
 
         
