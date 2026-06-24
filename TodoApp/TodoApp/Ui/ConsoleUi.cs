@@ -1,4 +1,6 @@
-﻿namespace TodoApp.Ui
+﻿using TodoApp.model;
+
+namespace TodoApp.Ui
 {
     // interacts with user input and displays the messages
     internal class ConsoleUi
@@ -66,7 +68,7 @@
             return Console.ReadLine();
         }
 
-        public static int GetIndexToRemove()
+        public static int GetIndexToRemove(List<Todo> list)
         {
             string index;
             do
@@ -74,15 +76,29 @@
                 Console.WriteLine("Enter number of the task to remove: ");
                 index = Console.ReadLine();
             }
-            while (!IsIndexValid(index));
+            while (!IsIndexValid(index, list));
 
             return int.Parse(index);
 
         }
 
-        public static bool IsIndexValid(string input)
+        public static bool IsIndexValid(string input, List<Todo> list)
         {
-            return int.TryParse(input, out _);
+            bool isParsable = int.TryParse(input, out int parsedInput);
+            if (!isParsable)
+            {
+                Console.WriteLine("Invalid input.");
+                return false;
+            } 
+            
+            if (parsedInput < 1 || parsedInput > list.Count)
+            {
+                Console.WriteLine("Index is out of range.");
+                Console.WriteLine("Try again: ");
+                return false;
+            }
+
+            return true;
         }
 
 

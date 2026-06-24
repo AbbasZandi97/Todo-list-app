@@ -16,22 +16,29 @@ namespace TodoApp.repository
 
         public void AddToDo()
         {
-            string task = ConsoleUi.GetTaskToAdd();
-            if (!TodoValidator.IsToDoUnique(task, _toDos))
+            while (true)
             {
-                Console.WriteLine("Entered task is already in the list.");
-                Console.WriteLine("Enter a new value: ");
-                AddToDo();
+                string task = ConsoleUi.GetTaskToAdd();
+                if (!TodoValidator.IsToDoUnique(task, _toDos))
+                {
+                    Console.WriteLine("Entered task is already in the list.");
+                    Console.WriteLine("Enter a new value: ");
+                    continue;
+                }
+                
+                if (TodoValidator.IsToDoEmpty(task))
+                {
+                    Console.WriteLine("You entered nothing or an empty task.");
+                    Console.WriteLine("Enter a valid task again: ");
+                    continue;
+                }
+
+                _toDos.Add(new Todo(task));
+                Console.WriteLine("Task added successfully!!\n");
+                return;
             }
-            else if (TodoValidator.IsToDoEmpty(task))
-            {
-                Console.WriteLine("You entered nothing or an empty task.");
-                Console.WriteLine("Enter a valid task again: ");
-                AddToDo();
-            }
+
             
-            _toDos.Add(new Todo(task));
-            Console.WriteLine("Task added successfully!!\n");
         }
 
         public void RemoveToDo()
@@ -43,7 +50,7 @@ namespace TodoApp.repository
             }
 
             SeeAllToDos();
-            int index = ConsoleUi.GetIndexToRemove();
+            int index = ConsoleUi.GetIndexToRemove(_toDos);
             index--;
             string deletedTask = _toDos[index].Description;
             _toDos.RemoveAt(index);
