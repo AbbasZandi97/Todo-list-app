@@ -9,12 +9,10 @@ namespace TodoApp.service
     internal class TodoService
     {
         private readonly TodoRepository _repository;
-        private readonly List<Todo> _todoList;
         
         public TodoService()
         {
             _repository = new TodoRepository();
-            _todoList = _repository.GetToDos();
         }
 
         

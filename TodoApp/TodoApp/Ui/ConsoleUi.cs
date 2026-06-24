@@ -87,7 +87,8 @@ namespace TodoApp.Ui
             bool isParsable = int.TryParse(input, out int parsedInput);
             if (!isParsable)
             {
-                Console.WriteLine("Invalid input.");
+                Console.WriteLine("input is not a number.");
+                Console.WriteLine("Please enter a number as index: ");
                 return false;
             } 
             
